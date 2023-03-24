@@ -1,0 +1,27 @@
+// this is to create Product table
+
+CREATE TABLE Product (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  category_id INT NOT NULL,
+  FOREIGN KEY (category_id) REFERENCES Category(id)
+);
+
+// this is to create User Table
+
+CREATE TABLE User (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  type ENUM('customer', 'shop owner') NOT NULL
+);
+
+// this is to create Order table
+CREATE TABLE Order (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  date DATE NOT NULL,
+  status ENUM('pending', 'shipped', 'delivered') NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES User(id)
+);
